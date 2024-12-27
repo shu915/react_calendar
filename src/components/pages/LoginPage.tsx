@@ -13,9 +13,7 @@ export const LoginPage = () => {
       <div className="w-[80%]">
         <Input type="password" placeholder="パスワード" />
       </div>
-      <div className="w-[80%]">
-        <PrimaryBtn>ログイン</PrimaryBtn>
-      </div>
+          <PrimaryBtn onClick={() => null}>ログイン</PrimaryBtn>
       </form>
     </div>
   );

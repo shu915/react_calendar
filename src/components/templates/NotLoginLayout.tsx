@@ -1,6 +1,6 @@
+import { Outlet } from "react-router-dom";
 
-
-export const NotLoginLayout = ({children}: {children: React.ReactNode}) => {
+export const NotLoginLayout = () => {
   return (
     <div>
     <header className="fixed top-0 left-0 right-0 bg-white">
@@ -20,7 +20,7 @@ export const NotLoginLayout = ({children}: {children: React.ReactNode}) => {
       </div>
     </header>
     <main className="pt-[50px] bg-gradient-to-r from-lime-100 to-lime-200 h-screen flex flex-col justify-center items-center">
-      {children}
+      <Outlet />
     </main>
   </div>
   )

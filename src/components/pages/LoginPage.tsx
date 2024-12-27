@@ -1,5 +1,5 @@
 import { PrimaryBtn } from "../atoms/PrimaryBtn";
-
+import { Input } from "../atoms/Input";
 
 export const LoginPage = () => {
   return (
@@ -8,10 +8,10 @@ export const LoginPage = () => {
 
       <h1 className="text-3xl text-lime-800 font-bold text-center">ログイン</h1>
       <div className="w-[80%]">
-        <input type="email" placeholder="メールアドレス" className="w-full border-4 border-solid border-lime-800 rounded-md  p-2" />
+        <Input type="email" placeholder="メールアドレス" />
       </div>
       <div className="w-[80%]">
-        <input type="password" placeholder="パスワード" className="w-full border-4 border-solid border-lime-800 rounded-md  p-2" />
+        <Input type="password" placeholder="パスワード" />
       </div>
       <div className="w-[80%]">
         <PrimaryBtn>ログイン</PrimaryBtn>

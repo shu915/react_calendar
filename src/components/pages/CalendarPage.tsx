@@ -1,4 +1,4 @@
-import { eachWeekOfInterval, eachDayOfInterval, endOfMonth, endOfWeek, getMonth, startOfMonth, format, getDate } from "date-fns";
+import { eachWeekOfInterval, eachDayOfInterval, endOfMonth, endOfWeek, getMonth, startOfMonth, format, getDate, isToday, isSameMonth } from "date-fns";
 import { DAYS_LIST } from "../../constants/calender";
 import { useState, useEffect, useMemo } from "react";
 
@@ -6,6 +6,13 @@ import { useState, useEffect, useMemo } from "react";
 export const CalendarPage = () => {
   const today = useMemo(() => new Date(), []);
   const [dateList, setDateList] = useState<Date[][]>([]);
+
+  const dateColor = (target: Date, currentDate: Date) => {
+    if (isToday(target)) {
+      return "bg-lime-800 text-white rounded-full";
+    }
+    return isSameMonth(target, currentDate) ? "text-black" : "text-gray-300";
+  }
 
   useEffect(() => {
     const sundayListOfMonth = eachWeekOfInterval({
@@ -38,7 +45,7 @@ export const CalendarPage = () => {
             <tr key={`week-${getDate(week[0])}`} className="mx-10">
               {week.map((date) => (
                 <td key={`date-${getDate(date)}`} className=" bg-white h-[10vh] border-2 border-solid border-lime-800 align-top">
-                  <span className="inline-block w-[20px]">
+                  <span className={`inline-block w-[20px] leading-[20px] text-center ${dateColor(date, today)}`}>
                     {getDate(date)}
                   </span>
                 </td>

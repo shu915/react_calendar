@@ -33,7 +33,9 @@ export const CalendarPage = () => {
         if (firstIndex === -1) {
           return;
         }
-        const secondIndex = newDateList[firstIndex].findIndex(item => isSameDay(item.date, schedule.date));
+        const secondIndex = newDateList[firstIndex].findIndex(item => {
+          return isSameDay(item.date, schedule.date);
+        })
         if (secondIndex === -1) {
           return;
         }

@@ -1,6 +1,6 @@
 import { DAYS_LIST } from "../../constants/calender";
 
-export const CalenderHeader = () => {
+export const CalendarHeader = () => {
   return (
     <thead>
           <tr className="bg-lime-800 text-white rounded-tl-lg rounded-tr-lg py-10">

@@ -11,7 +11,7 @@ export const TopPage = () => {
       <p className="pt-[10vh] text-5xl">お互いのスケジュールを管理するアプリです</p>
 
       <div className="pt-[20vh]">
-          <PrimaryBtn onClick={handleLogin}>ログイン</PrimaryBtn>
+          <PrimaryBtn onClick={handleLogin} size="lg">ログイン</PrimaryBtn>
       </div>
       </div>
   )

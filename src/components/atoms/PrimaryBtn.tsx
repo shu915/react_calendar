@@ -2,10 +2,16 @@
 type PrimaryBtnProps = {
   children: React.ReactNode;
   onClick: () => void;
+  size: "sm" | "lg"
 }
 
-export const PrimaryBtn = ({children, onClick}: PrimaryBtnProps) => {
+const SIZE_MAPPING = {
+  sm: "p-2 text-sm",
+  lg: "p-4 text-lg"
+}
+
+export const PrimaryBtn = ({ children, onClick, size }: PrimaryBtnProps) => {
   return (
-    <button className="bg-lime-800 text-white p-4 text-lg rounded-lg" onClick={onClick}>{children}</button>
+    <button className={`bg-lime-800 text-white ${SIZE_MAPPING[size]} rounded-lg`} onClick={onClick}>{children}</button>
   )
 }

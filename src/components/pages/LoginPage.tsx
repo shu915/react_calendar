@@ -51,7 +51,7 @@ export const LoginPage = () => {
       <div className="w-[80%]">
         <Input type="password" placeholder="パスワード" name="password" value={loginInfo.password} onChange={changeLoginInfo} />
       </div>
-          <PrimaryBtn onClick={() => null}>ログイン</PrimaryBtn>
+          <PrimaryBtn onClick={() => null} size="lg">ログイン</PrimaryBtn>
       </form>
     </div>
   );

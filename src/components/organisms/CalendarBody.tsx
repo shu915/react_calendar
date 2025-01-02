@@ -7,7 +7,7 @@ type Props = {
   currentDate: Date;
 }
 
-export const CalenderBody = ({ dateList, currentDate }: Props) => {
+export const CalendarBody = ({ dateList, currentDate }: Props) => {
   
   return (
     <tbody>

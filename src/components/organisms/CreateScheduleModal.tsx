@@ -18,7 +18,7 @@ const modalStyle = {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: "30%",
-    height: "50%",
+    height: "50vh",
   },
 };
 
@@ -28,6 +28,9 @@ export const CreateScheduleModal = ({ isOpen, onRequestClose, addSchedule }: Pro
     title: "",
     description: "",
   });
+
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
 
   const changeSchedule = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -39,6 +42,12 @@ export const CreateScheduleModal = ({ isOpen, onRequestClose, addSchedule }: Pro
   const handleCreateSchedule = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { title, date, description } = newSchedule;
+    if (title === "") {
+      setErrorMessage("タイトルを入力してください");
+      return;
+    } else {
+      setErrorMessage("");
+    }
     const schedule: Schedule = {
       id: 10001,
       title,
@@ -60,6 +69,7 @@ export const CreateScheduleModal = ({ isOpen, onRequestClose, addSchedule }: Pro
       <h3 className="text-center text-3xl text-lime-800 font-bold pb-5">
         予定作成
       </h3>
+      {errorMessage && <p className="p-5 mb-5 rounded-lg bg-red-500 text-white text-center">{errorMessage}</p>}
       <form className="flex flex-col gap-8" onSubmit={handleCreateSchedule}>
         <div className="w-full flex items-center">
           <label htmlFor="title-form" className="w-[30%] text-line-800">

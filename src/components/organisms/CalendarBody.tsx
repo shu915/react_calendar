@@ -1,15 +1,22 @@
 import { getDate } from "date-fns";
 import { dateColor } from "../../libs/date";
-import { DateList } from "../../types/calendar";
-import { Schedule } from "../atoms/Schedule";
+import { DateList, Schedule } from "../../types/calendar";
+import { ScheduleBtn } from "../atoms/ScheduleBtn";
+import { useState } from "react";
+import { ScheduleDetailModal } from "./ScheduleDetailModal";
 type Props = {
   dateList: DateList;
   currentDate: Date;
 }
 
 export const CalendarBody = ({ dateList, currentDate }: Props) => {
-  
+  const [selectedSchedule, setSelectedSchedule] = useState<Schedule | null>(null);
+
+  const closeModal = () => {
+    setSelectedSchedule(null);
+  }
   return (
+    <>
     <tbody>
           {dateList.map((week) => (
             <tr key={`week-${getDate(week[0].date)}`} className="mx-10">
@@ -21,15 +28,17 @@ export const CalendarBody = ({ dateList, currentDate }: Props) => {
                   <div className="flex flex-col items-center gap-1 pb-2">
 
                   {date.schedules.map((schedule) => (
-                    <Schedule key={schedule.id}>
+                    <ScheduleBtn key={schedule.id} onClick={() => setSelectedSchedule(schedule)}>
                       {schedule.title}
-                    </Schedule>
+                    </ScheduleBtn>
                   ))}
                   </div>
                 </td>
               ))}
             </tr>
           ))}
-        </tbody>
+    </tbody>
+    <ScheduleDetailModal closeModal={closeModal} selectedSchedule={selectedSchedule} />
+    </>
   )
 }

@@ -1,10 +1,9 @@
 import Modal from "react-modal";
-import { Schedule, NewSchedule } from "../../types/calendar";
-import { useState } from "react";
-import { format, parse } from "date-fns";
+import { Schedule } from "../../types/calendar";
 import { PrimaryBtn } from "../atoms/PrimaryBtn";
 import { Input } from "../atoms/Input";
 import { TextArea } from "../atoms/TextArea";
+import { useCreateSchedule } from "../../hooks/useCreateSchedule";
 
 type Props = {
   isOpen: boolean;
@@ -23,46 +22,7 @@ const modalStyle = {
 };
 
 export const CreateScheduleModal = ({ isOpen, onRequestClose, addSchedule }: Props) => {
-  const [newSchedule, setNewSchedule] = useState<NewSchedule>({
-    date: format(new Date(), "yyyy-MM-dd"),
-    title: "",
-    description: "",
-  });
-
-  const [errorMessage, setErrorMessage] = useState<string>("");
-
-
-  const changeSchedule = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setNewSchedule((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleCreateSchedule = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { title, date, description } = newSchedule;
-    if (title === "") {
-      setErrorMessage("タイトルを入力してください");
-      return;
-    } else {
-      setErrorMessage("");
-    }
-    const schedule: Schedule = {
-      id: 10001,
-      title,
-      date: parse(date, "yyyy-MM-dd", new Date()),
-      description,
-    }
-    addSchedule(schedule);
-    setNewSchedule({
-      date: format(new Date(), "yyyy-MM-dd"),
-      title: "",
-      description: "",
-    });
-
-    onRequestClose();
-  }
+  const { newSchedule, errorMessage, changeSchedule, handleCreateSchedule } = useCreateSchedule({addSchedule, onRequestClose});
 
   return (
     <Modal style={modalStyle} isOpen={isOpen} onRequestClose={onRequestClose}>

@@ -9,3 +9,9 @@ export type DateList = {
   date: Date;
   schedules: Schedule[];
 }[][];
+
+export type NewSchedule = {
+  date: string;
+  title: string;
+  description: string;
+}
